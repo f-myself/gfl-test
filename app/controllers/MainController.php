@@ -1,74 +1,67 @@
 <?php
 
 require "app/models/MainModel.php";
-require "app/views/MainView.php";
-require "app/views/TemplateView.php";
+require "app/lib/Send.php";
 
 class MainController extends Controller
 {
 	function indexAction()
 	{
 		$newModel = new MainModel();
-		//$newView = new MainView();
-		$arr = $newModel -> getBooks();
-		/*if($arr)
-		{
-			$newView -> showBooks($arr);
-		} else {
-			echo "Архив книг недоступен";
-		}*/
+		$books = $newModel -> getBooks();
+		$genres = $newModel -> getGenres();
+		$authors = $newModel -> getAuthors();
 
-		$this->view->generate('MainView.php', 'TemplateView.php');
+		$this->view->generate('MainView.php', 'TemplateView.php', $books, $genres, $authors);
 		
 		$newModel = NULL;
-		$newView = NULL;
 
 	}
 
 		function showGenresAction()
 	{
 		$newModel = new MainModel();
-		$newView = new MainView();
 		$arr = $newModel -> getGenres();
-		if($arr)
-		{
-			$newView -> showGenres($arr);
-		} else {
-			echo "Жанры недоступны.";
-		}
 		$newModel = NULL;
 		$newView = NULL;
+		return $arr;
 	}
 
 	function showAuthorsAction()
 	{
 		$newModel = new MainModel();
-		$newView = new MainView();
 		$arr = $newModel -> getAuthors();
-		if($arr)
-		{
-			$newView -> showAuthors($arr);
-		} else {
-			echo "Архив книг недоступен.";
-		}
 		$newModel = NULL;
 		$newView = NULL;
+		return $arr;
 	}
 
-	function genreAction($genre="All")
+	function getGenreAction($genre)
 	{
-		echo "Showing by genre\n";
-		echo "You're want $genre";
+		$newModel = new MainModel();
+		$byGenre = $newModel -> getBookByGenre($genre);
+		$genres = $newModel ->getGenres();
+		$authors = $newModel -> getAuthors();
+
+		$this->view->generate('MainView.php', 'TemplateView.php', $byGenre, $genres, $authors);
 	}
 
-	function authorAction($author="All")
+	function getAuthorAction($author)
 	{
-		echo "Showing by author";
-		echo "\n$author";
+		$newModel = new MainModel();
+		$byAuthor = $newModel -> getBookByAuthor($author);
+		$genres = $newModel -> getGenres();
+		$authors = $newModel -> getAuthors();
+
+		$this->view->generate('MainView.php', 'TemplateView.php', $byAuthor, $genres, $authors);
 	}
 
-	function viewAction($id=1)
+	function viewAction($id)
 	{
-		echo "Showing book page";
+		$newModel = new MainModel();
+		$byId = $newModel -> getBookById($id);
+		$genres = $newModel -> getGenres();
+		$authors = $newModel -> getAuthors();
+		$this->view->generate('BookView.php', 'TemplateView.php', $byId, $genres, $authors);
 	}
 }

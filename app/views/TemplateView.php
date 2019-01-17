@@ -9,11 +9,11 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
   <!-- Bootstrap core CSS -->
-  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../../public/css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
-  <link href="../css/mdb.min.css" rel="stylesheet">
+  <link href="../../../public/css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="../css/style.min.css" rel="stylesheet">
+  <link href="../../../public/css/style.min.css" rel="stylesheet">
   <style type="text/css">
     html,
     body,
@@ -49,8 +49,8 @@
     <div class="container">
 
       <!-- Brand -->
-      <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
-        <strong class="blue-text">MDB</strong>
+      <a class="navbar-brand waves-effect" href="#">
+        <strong class="blue-text">GFL-TEST</strong>
       </a>
 
       <!-- Collapse -->
@@ -65,18 +65,37 @@
         <!-- Left -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link waves-effect" href="#">Home
+            <a class="nav-link waves-effect" href="../../main/index">Главная
               <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">About MDB</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Жанры</a>
+            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink1">
+              <?php
+                foreach ($genres as $key => $value) {
+              ?>
+              <a class="dropdown-item" href="../../main/getGenre/<?=$value[id]?>"><?=$value[genre]?></a>
+              <?php
+                }
+              ?>
+            </div>
+          </li>
+          <!-- Get Authors -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Авторы</a>
+            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink1">
+              <?php
+                foreach ($authors as $key => $value) {
+              ?>
+              <a class="dropdown-item" href="../../main/getGenre/<?=$value[id]?>"><?=$value[author]?></a>
+              <?php
+                }
+              ?>
+            </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank">Free download</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href="https://mdbootstrap.com/education/bootstrap/" target="_blank">Free tutorials</a>
+            <a class="nav-link waves-effect" href="../../admin"">Войти</a>
           </li>
         </ul>
 
@@ -112,16 +131,17 @@
     </div>
   </nav>
   <!-- Navbar -->
+<?
 
-  <!--Main layout-->
-  <main>
+echo "Template Header";
 
-    <?php include 'app/views/'.$content_view; ?>
+include 'app/views/'.$content;
 
-  </main>
-  <!--Main layout-->
+echo "template Footer";
 
-  <!--Footer-->
+?>
+
+<!--Footer-->
   <footer class="page-footer text-center font-small mt-4 wow fadeIn">
 
     <!--Call to action-->
@@ -185,13 +205,13 @@
 
   <!-- SCRIPTS -->
   <!-- JQuery -->
-  <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="../../../public/js/jquery-3.3.1.min.js"></script>
   <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="../js/popper.min.js"></script>
+  <script type="text/javascript" src="../../../public/js/popper.min.js"></script>
   <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../../../public/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="../js/mdb.min.js"></script>
+  <script type="text/javascript" src="../../../public/js/mdb.min.js"></script>
   <!-- Initializations -->
   <script type="text/javascript">
     // Animations initialization

@@ -1,7 +1,7 @@
 <?php
 
 include "app/config/DBConfig.php";
-class Mysql extends DBConfig
+class Mysql
 {
 	public $connectionString;
 	
@@ -14,13 +14,10 @@ class Mysql extends DBConfig
 	{
 		$this -> connectionString = NULL;
 
-		$dbParams = new DBConfig();
-		$this -> databaseName = $dbParams -> dbName;
-		$this -> hostName = $dbParams -> serverName;
-		$this -> userName = $dbParams -> userName;
-		$this -> passCode = $dbParams -> passCode;
-		$dbParams = NULL;
-
+		$this -> databaseName = DB_NAME; // $dbParams -> dbName;
+		$this -> hostName = DB_HOST; //$dbParams -> serverName;
+		$this -> userName = DB_USER; //$dbParams -> userName;
+		$this -> passCode = DB_PASSWORD; //$dbParams -> passCode;
 	}
 
 	function dbConnect()

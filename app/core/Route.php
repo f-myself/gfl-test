@@ -10,7 +10,7 @@ class Route
 		$controllerName = "MainController";
 		$actionName = "IndexAction";
 		$routes = explode('/', $_SERVER["REQUEST_URI"]);
-		//var_dump($routes);
+		// var_dump($routes);
 		if(!empty($routes[1]))
 		{
 			$controllerName = ucfirst($routes[1]) . "Controller";
@@ -18,12 +18,12 @@ class Route
 
 		if(!empty($routes[2]))
 		{
-			$actionName = strtolower($routes[2]) . "Action";
+			$actionName = $routes[2] . "Action";
 		}
 
 		if(!empty($routes[3]))
 		{
-			$methotParameter = $routes[3];
+			$methodParameter = $routes[3];
 		}
 		
 		$controllerFile = $controllerName . ".php";
@@ -34,9 +34,9 @@ class Route
 			$controllerObject = new $controllerName;
 			if(method_exists($controllerObject, $actionName))
 			{
-				$controllerObject->$actionName($methotParameter);
+				$controllerObject -> $actionName($methodParameter);
 			}else{
-				echo "No Method!";
+				$controllerObject -> IndexAction();
 			}
 		}elseif (file_exists("app/admin/controllers/".$controllerFile))
 		{
